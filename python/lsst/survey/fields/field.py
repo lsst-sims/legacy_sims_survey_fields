@@ -109,7 +109,7 @@ class Field(object):
 
         Parameters
         ----------
-        row : list[str]
+        row : list
             The database row information to create the instance from.
 
         Returns

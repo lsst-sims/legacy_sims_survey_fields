@@ -26,5 +26,12 @@ class TestField(unittest.TestCase):
         self.assertEqual(self.field.eb_rad, -math.pi / 3)
         self.assertAlmostEqual(self.field.fov_rad, math.pi / 60, delta=1e-7)
 
+    def test_create_from_db_row(self):
+        row = [1, 3.0, 30.0, -30.0, -45.0, 45.0, 60.0, -60.0]
+        field = Field.from_db_row(row)
+        self.assertEqual(field.fid, 1)
+        self.assertEqual(field.ra, 30.0)
+        self.assertEqual(field.ra_rad, math.pi / 6)
+
 if __name__ == '__main__':
     unittest.main()
