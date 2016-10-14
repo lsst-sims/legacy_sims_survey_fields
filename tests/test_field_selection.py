@@ -2,7 +2,7 @@ import unittest
 
 from lsst.sims.survey.fields import FieldSelection
 
-class FieldSelectionTest(unittest.TestCase):
+class TestFieldSelection(unittest.TestCase):
 
     def setUp(self):
         self.fs = FieldSelection()
