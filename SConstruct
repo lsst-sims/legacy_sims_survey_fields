@@ -1,3 +1,3 @@
 # -*- python -*-
 from lsst.sconsUtils import scripts
-scripts.BasicSConstruct("survey_fields")
+scripts.BasicSConstruct("sims_survey_fields")
