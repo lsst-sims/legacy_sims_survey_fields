@@ -2,7 +2,7 @@ from __future__ import division
 import math
 import unittest
 
-from lsst.survey.fields import Field
+from lsst.sims.survey.fields import Field
 
 class TestField(unittest.TestCase):
 
