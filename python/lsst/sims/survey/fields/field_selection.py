@@ -30,21 +30,6 @@ class FieldSelection(object):
         """
         return "select * from Field"
 
-    def finish_query(self, query):
-        """Put a semicolon at the end of a query.
-
-        Parameters
-        ----------
-        query : str
-            The SQL query to finish.
-
-        Returns
-        -------
-        str
-            The finished SQl query.
-        """
-        return query + ";"
-
     def combine_queries(self, combiners, *queries, **kwargs):
         """Combine a set of queries.
 
@@ -77,6 +62,21 @@ class FieldSelection(object):
         final_query.append("order by {}".format(order_by))
 
         return self.finish_query(" ".join(final_query))
+
+    def finish_query(self, query):
+        """Put a semicolon at the end of a query.
+
+        Parameters
+        ----------
+        query : str
+            The SQL query to finish.
+
+        Returns
+        -------
+        str
+            The finished SQl query.
+        """
+        return query + ";"
 
     def galactic_region(self, maxb, minb, endl, exclusion=True):
         """Create a galactic region.
