@@ -25,5 +25,11 @@ userRegion = 180.00,-87.57,0.03"""
         self.assertEqual(ra[1], 180.0)
         self.assertAlmostEqual(dec[1], -87.57, delta=1e-2)
 
+    def test_get_rows(self):
+        rows = self.fields_db.get_rows(self.query)
+        self.assertIsInstance(rows, list)
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(len(rows[0]), 8)
+
 if __name__ == '__main__':
     unittest.main()

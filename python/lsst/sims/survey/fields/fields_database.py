@@ -48,9 +48,7 @@ class FieldsDatabase(object):
             The OpSim3 user regions formatted string.
         """
         format_str = "userRegion = {{:.{0}f}},{{:.{0}f}},0.03".format(precision)
-        cursor = self.connect.cursor()
-        cursor.execute(query)
-        rows = cursor.fetchall()
+        rows = self.get_rows(query)
         result = []
         for row in rows:
             result.append(format_str.format(row[2], row[3]))
@@ -69,9 +67,7 @@ class FieldsDatabase(object):
         numpy.array, numpy.array
             The arrays of RA and Dec.
         """
-        cursor = self.connect.cursor()
-        cursor.execute(query)
-        rows = cursor.fetchall()
+        rows = self.get_rows(query)
         ra = []
         dec = []
         for row in rows:
@@ -79,3 +75,23 @@ class FieldsDatabase(object):
             dec.append(row[3])
 
         return numpy.array(ra), numpy.array(dec)
+
+    def get_rows(self, query):
+        """Get the rows from a query.
+
+        This function hands back all rows from a query. This allows one to perform other
+        operations on the information than those provided by this class.
+
+        Parameters
+        ----------
+        query : str
+            The query for field retrieval.
+
+        Returns
+        -------
+        list
+            The set of field information queried.
+        """
+        cursor = self.connect.cursor()
+        cursor.execute(query)
+        return cursor.fetchall()
