@@ -105,6 +105,16 @@ class FieldSelection(object):
 
         return sql
 
+    def get_all_fields(self):
+        """Return query for all fields.
+
+        Returns
+        -------
+        str
+            THe query for all the fields.
+        """
+        return self.finish_query(self.base_select())
+
     def select_region(self, region_type, start_value, end_value):
         """Create a simple bounded region.
 

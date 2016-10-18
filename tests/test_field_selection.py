@@ -55,3 +55,6 @@ class TestFieldSelection(unittest.TestCase):
         combiners = ("and",)
         with self.assertRaises(RuntimeError):
             self.fs.combine_queries(combiners, query1)
+
+    def test_get_all_fields(self):
+        self.assertEqual(self.fs.get_all_fields(), self.truth_base_query + ";")
