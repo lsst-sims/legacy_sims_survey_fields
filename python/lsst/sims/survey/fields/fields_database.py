@@ -20,3 +20,36 @@ class FieldsDatabase(object):
         """Delete the class.
         """
         self.connect.close()
+
+    def get_opsim3_userregions(self, query, precision=2):
+        """Get a formatted string of OpSim3 user regions.
+
+        This function gets a formatted string of OpSim3 user regions suitable for an OpSim3
+        configuration file. The format looks like (RA,Dec,Width):
+
+        userRegion = XXX.XX,YYY.YY,0.03
+        ...
+
+        The last column is unused in OpSim3. The precision argument can be used to control
+        the formatting, but OpSIm3 configuration files use 2 digits as standard.
+
+        Parameters
+        ----------
+        query : str
+            The query for field retrieval.
+        precision : int, optional
+            The precision used for the RA and Dec columns. Default is 2.
+
+        Returns
+        -------
+        str
+            The OpSim3 user regions formatted string.
+        """
+        format_str = "userRegion = {{:.{0}f}},{{:.{0}f}},0.03".format(precision)
+        cursor = self.connect.cursor()
+        cursor.execute(query)
+        rows = cursor.fetchall()
+        result = []
+        for row in rows:
+            result.append(format_str.format(row[2], row[3]))
+        return str(os.linesep.join(result))
