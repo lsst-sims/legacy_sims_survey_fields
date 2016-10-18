@@ -1,3 +1,4 @@
+setupRequired(numpy)
 setupRequired(python)
 setupRequired(utils)
 

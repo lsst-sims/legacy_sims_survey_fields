@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 import os
 import sqlite3
 
+import numpy
+
 __all__ = ["FieldsDatabase"]
 
 class FieldsDatabase(object):
@@ -53,3 +55,27 @@ class FieldsDatabase(object):
         for row in rows:
             result.append(format_str.format(row[2], row[3]))
         return str(os.linesep.join(result))
+
+    def get_ra_dec_arrays(self, query):
+        """Retrieve lists of RA and Dec.
+
+        Parameters
+        ----------
+        query : str
+            The query for field retrieval.
+
+        Returns
+        -------
+        numpy.array, numpy.array
+            The arrays of RA and Dec.
+        """
+        cursor = self.connect.cursor()
+        cursor.execute(query)
+        rows = cursor.fetchall()
+        ra = []
+        dec = []
+        for row in rows:
+            ra.append(row[2])
+            dec.append(row[3])
+
+        return numpy.array(ra), numpy.array(dec)
