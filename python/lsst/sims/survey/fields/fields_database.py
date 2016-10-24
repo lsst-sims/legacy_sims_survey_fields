@@ -23,6 +23,26 @@ class FieldsDatabase(object):
         """
         self.connect.close()
 
+    def get_field_set(self, query):
+        """Get a set of Field instances.
+
+        Parameters
+        ----------
+        query : str
+            The query for field retrieval.
+
+        Returns
+        -------
+        set
+            The collection of Field instances.
+        """
+        field_set = set()
+        rows = self.get_rows(query)
+        for row in rows:
+            field_set.add(tuple(row))
+
+        return field_set
+
     def get_opsim3_userregions(self, query, precision=2):
         """Get a formatted string of OpSim3 user regions.
 

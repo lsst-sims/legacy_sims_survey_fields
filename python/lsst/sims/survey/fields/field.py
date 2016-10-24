@@ -61,6 +61,17 @@ class Field(object):
         self.eb = eb
         self.fov = fov
 
+    def __str__(self):
+        """The instance string representation.
+
+        Returns
+        -------
+        str
+        """
+        return "Id: {}, RA: {}, Dec:{}, GL: {}, "\
+               "GB: {}, EL: {}, EB: {}, FOV: {}".format(self.fid, self.ra, self.dec, self.gl, self.gb,
+                                                        self.el, self.eb, self.fov)
+
     @property
     def ra_rad(self):
         """float : The right-ascension (radians) of the field.
