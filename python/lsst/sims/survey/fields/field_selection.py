@@ -79,7 +79,7 @@ class FieldSelection(object):
         """
         return query + ";"
 
-    def galactic_region(self, maxb, minb, endl, exclusion=False):
+    def galactic_region(self, maxB, minB, endL, exclusion=False):
         """Create a galactic region.
 
         This function creates a sloping region around the galactic plane to either include or
@@ -87,11 +87,11 @@ class FieldSelection(object):
 
         Parameters
         ----------
-        maxb : float
+        maxB : float
             The maximum galactic latitude at the galacitc longitude of zero.
-        minb : float
+        minB : float
             The minimum galactic latitude at the galactic longitude of endL.
-        endl : float
+        endL : float
             The galactic longitude for the end of the envelope region.
         exclusion : bool, optional
             Flag to construct the query as an exclusion. Default is False.
@@ -102,9 +102,9 @@ class FieldSelection(object):
             The appropriate query.
         """
         region_select = ">" if exclusion else "<="
-        band = maxb - minb
+        band = maxB - minB
         sql = '(abs(fieldGB) {0} ({1} - ({2} * abs(fieldGL)) / {3}))'.format(region_select,
-                                                                             maxb, band, endl)
+                                                                             maxB, band, endL)
 
         return sql
 
