@@ -22,9 +22,9 @@ class TestFieldSelection(unittest.TestCase):
         self.assertEqual(self.fs.finish_query(query), query + ";")
 
     def test_galactic_region(self):
-        self.assertEqual(self.fs.galactic_region(10.0, 0.1, 90.0), self.truth_galactic_exclusion)
-        self.assertEqual(self.fs.galactic_region(10.0, 0.1, 90.0, exclusion=False),
-                         self.truth_galactic_region)
+        self.assertEqual(self.fs.galactic_region(10.0, 0.1, 90.0, exclusion=True),
+                         self.truth_galactic_exclusion)
+        self.assertEqual(self.fs.galactic_region(10.0, 0.1, 90.0), self.truth_galactic_region)
 
     def test_select_region(self):
         self.assertEqual(self.fs.select_region("RA", 90.0, 270.0), self.truth_normal_ra_region)

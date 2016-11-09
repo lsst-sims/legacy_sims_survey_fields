@@ -79,7 +79,7 @@ class FieldSelection(object):
         """
         return query + ";"
 
-    def galactic_region(self, maxb, minb, endl, exclusion=True):
+    def galactic_region(self, maxb, minb, endl, exclusion=False):
         """Create a galactic region.
 
         This function creates a sloping region around the galactic plane to either include or
@@ -94,7 +94,7 @@ class FieldSelection(object):
         endL : float
             The galactic longitude for the end of the envelope region.
         exclusion : bool, optional
-            Flag to construct the query as an exclusion. Default is True.
+            Flag to construct the query as an exclusion. Default is False.
 
         Returns
         -------
