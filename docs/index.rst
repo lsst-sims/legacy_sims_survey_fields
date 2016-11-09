@@ -42,10 +42,27 @@ Subsections
 
 Use sectioning liberally.
 
-Galactic Plane Description
-==========================
+Galactic Plane Region Description
+=================================
 
 The galactic plane region is determined by an envelope as shown in the following graphic.
+
+.. image:: /_static_sims_survey_fields/galactic_plane_envelope.png
+    :target: ../../_static_sims_survey_fields/galactic_plane_envelope.png
+    :alt: Galactic Plane Region Definition
+
+It is specified by three values::
+
+maxB
+    This is the value of the maximum extent of the envelope in terms of galactic latitude (degrees) at the galactic longitude of zero degrees.
+
+minB
+    This is the value of the minimum extent of the envelope in terms of galatic latitdue (degrees) at the galatic longitude specified by endL
+
+endL
+    This is the end of the galactic plane envelope in terms of galactic longitude (degrees).
+
+
 
 .. _lsst-sims-survey-fields-py-ref:
 
