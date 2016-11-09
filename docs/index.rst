@@ -1,29 +1,39 @@
-.. _lsst-survey-fields:
+.. _lsst-sims-survey-fields:
 
-########################################
-survey_fields - Survey Field Information
-########################################
+########################################################
+sims_survey_fields - Simulation Survey Field Information
+########################################################
 
-.. _lsst-survey-fields-intro:
+.. _lsst-sims-survey-fields-intro:
 
 Introduction
 ============
 
-Tell people what the package does (in a few paragraphs).
-List features here.
+This package contains the sky field information that is used by the Operations Simulator. The fields cover the entire sky and have a field-of-view that is commensurate with the LSST camera which is ~9.5 square degrees. The field information is retrieved by use of SQL queries. Those queries can be generated using the provided construction functions. The field information can be retrieved in a number of different structures.
 
-.. _lsst-survey-fields-getting-started:
+.. _lsst-sims-survey-fields-getting-started:
 
 Getting Started
 ===============
 
-A quick tutorial that covers the main functionality.
-It should be *brief* (a laptop screen or two) and *shouldn't be exhaustive*.
+A quick example is retriving all fields as a set within a declination from -20 degrees to 0 degrees.
 
-.. _lsst-survey-fields-getting-started:
+.. code-block:: python
 
-Using survey_fields
-===================
+  from lsst.sims.survey.fields import FieldsDatabase, FieldsSelection
+  # Create the selection
+  fs = FieldSelection()
+  query = fs.select_region("fieldDec", -20.0, 0)
+  # Create the set fields
+  fd = FieldsDatabase()
+  field_set = fd.get_field_set(fs.finish_query(query))
+
+The result is a set of tuples containing the field information. 
+
+.. _lsst-sims-survey-fields-getting-started:
+
+Using sims_survey_fields
+========================
 
 A series of sections that cover API usage.
 
@@ -32,13 +42,12 @@ Subsections
 
 Use sectioning liberally.
 
-Other sections
-==============
+Galactic Plane Description
+==========================
 
-This is where you can put other types of content, such as more
-detailed architectural descriptons for developers.
+The galactic plane region is determined by an envelope as shown in the following graphic.
 
-.. _lsst-survey-fields-py-ref:
+.. _lsst-sims-survey-fields-py-ref:
 
 Python Reference
 ================

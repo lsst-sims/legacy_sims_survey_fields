@@ -1,12 +1,12 @@
-=============
-survey_fields
-=============
+==================
+sims_survey_fields
+==================
 
-{{Retrieve information about the LSST survey standard fields.}}
+Retrieve information about the LSST survey standard fields.
 
-``survey_fields`` is a package in the LSST Stack.
+``sims_survey_fields`` is a package in the LSST Simulations Stack.
 
-Documentation: {{doc url}}
+Documentation: https://sims-survey-fields.lsst.io
 
 License
 -------
