@@ -58,3 +58,6 @@ class TestFieldSelection(unittest.TestCase):
 
     def test_get_all_fields(self):
         self.assertEqual(self.fs.get_all_fields(), self.truth_base_query + ";")
+
+if __name__ == '__main__':
+    unittest.main()
