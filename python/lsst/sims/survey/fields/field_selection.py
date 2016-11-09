@@ -140,10 +140,11 @@ class FieldSelection(object):
         str
             The appropriate query.
         """
+        column_name = CUT_TYPEMAP[region_type]
         if end_value > start_value:
-            sql = '{0} between {1} and {2}'.format(region_type, start_value, end_value)
+            sql = '{0} between {1} and {2}'.format(column_name, start_value, end_value)
         else:
-            sql = '({0} between {1} and 360 or {0} between 0 and {2})'.format(region_type, start_value,
+            sql = '({0} between {1} and 360 or {0} between 0 and {2})'.format(column_name, start_value,
                                                                               end_value)
 
         return sql

@@ -27,27 +27,27 @@ class TestFieldSelection(unittest.TestCase):
                          self.truth_galactic_region)
 
     def test_select_region(self):
-        self.assertEqual(self.fs.select_region("fieldRA", 90.0, 270.0), self.truth_normal_ra_region)
-        self.assertEqual(self.fs.select_region("fieldRA", 270.0, 90.0), self.truth_cross_region)
+        self.assertEqual(self.fs.select_region("RA", 90.0, 270.0), self.truth_normal_ra_region)
+        self.assertEqual(self.fs.select_region("RA", 270.0, 90.0), self.truth_cross_region)
 
     def test_combine_queries(self):
-        query1 = self.fs.select_region("fieldRA", 90.0, 270.0)
-        query2 = self.fs.select_region("fieldDec", -90.0, -61.0)
+        query1 = self.fs.select_region("RA", 90.0, 270.0)
+        query2 = self.fs.select_region("Dec", -90.0, -61.0)
         combiners = ("and",)
 
         truth_query_parts = [self.truth_base_query]
         truth_query_parts.append("where")
-        truth_query_parts.append(query1)
-        truth_query_parts.append(combiners[0])
-        truth_query_parts.append(query2)
+        truth_query_parts.append(self.truth_normal_ra_region)
+        truth_query_parts.append("and")
+        truth_query_parts.append(self.truth_normal_dec_region)
         truth_query_parts.append("order by fieldId")
 
         truth_query = " ".join(truth_query_parts) + ";"
         self.assertEqual(self.fs.combine_queries(combiners, query1, query2), truth_query)
 
     def test_bad_combine_queries(self):
-        query1 = self.fs.select_region("fieldRA", 90.0, 270.0)
-        query2 = self.fs.select_region("fieldDec", -90.0, -61.0)
+        query1 = self.fs.select_region("RA", 90.0, 270.0)
+        query2 = self.fs.select_region("Dec", -90.0, -61.0)
         combiners = ()
         with self.assertRaises(RuntimeError):
             self.fs.combine_queries(combiners, query1, query2)

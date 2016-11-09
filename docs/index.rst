@@ -23,7 +23,7 @@ A quick example is retriving all fields as a set within a declination from -20 d
   from lsst.sims.survey.fields import FieldsDatabase, FieldsSelection
   # Create the selection
   fs = FieldSelection()
-  query = fs.select_region("fieldDec", -20.0, 0)
+  query = fs.select_region("Dec", -20.0, 0)
   # Create the set fields
   fd = FieldsDatabase()
   field_set = fd.get_field_set(fs.finish_query(query))
