@@ -13,6 +13,7 @@ CUT_TYPEMAP = {
     "EL": "fieldEL",
     "EB": "fieldEB"
 }
+"""Mapping of short names to field database column names."""
 
 class FieldSelection(object):
     """Class for constructing SQL queries on the survey fields database.
@@ -92,6 +93,8 @@ class FieldSelection(object):
             The minimum galactic latitude at the galactic longitude of endL.
         endL : float
             The galactic longitude for the end of the envelope region.
+        exclusion : bool, optional
+            Flag to construct the query as an exclusion. Default is True.
 
         Returns
         -------
@@ -118,8 +121,19 @@ class FieldSelection(object):
     def select_region(self, region_type, start_value, end_value):
         """Create a simple bounded region.
 
+        This function creates a bounded cut query based on the input values as bounds
+        for a given region. If start_value < end_value, the cut looks like [start_value,
+        end_value]. If start_value > end_value, the bounded cut is or'd between the following
+        cuts: [start_value, 360] and [0, end_value].
+
         Parameters
         ----------
+        region_type : str
+            The name of the region to cut on.
+        start_value : float
+            The starting value (degrees) of the cut region.
+        end_value : float
+            The ending value (degrees) of the cut region.
 
         Returns
         -------

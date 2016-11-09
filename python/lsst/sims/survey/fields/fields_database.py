@@ -53,7 +53,7 @@ class FieldsDatabase(object):
         ...
 
         The last column is unused in OpSim3. The precision argument can be used to control
-        the formatting, but OpSIm3 configuration files use 2 digits as standard.
+        the formatting, but OpSim3 configuration files use 2 digits as standard.
 
         Parameters
         ----------
