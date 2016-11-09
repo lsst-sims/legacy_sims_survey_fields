@@ -1,6 +1,6 @@
 import unittest
 
-from lsst.sims.survey.fields import Field, FieldsDatabase
+from lsst.sims.survey.fields import FieldsDatabase
 
 class TestFieldDatabase(unittest.TestCase):
 
