@@ -87,11 +87,11 @@ class FieldSelection(object):
 
         Parameters
         ----------
-        maxB : float
+        maxb : float
             The maximum galactic latitude at the galacitc longitude of zero.
-        minB : float
+        minb : float
             The minimum galactic latitude at the galactic longitude of endL.
-        endL : float
+        endl : float
             The galactic longitude for the end of the envelope region.
         exclusion : bool, optional
             Flag to construct the query as an exclusion. Default is False.
