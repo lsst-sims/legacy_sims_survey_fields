@@ -13,6 +13,7 @@ class TestFieldSelection(unittest.TestCase):
         self.truth_normal_ra_region = 'fieldRA between 90.0 and 270.0'
         self.truth_cross_region = '(fieldRA between 270.0 and 360 or fieldRA between 0 and 90.0)'
         self.truth_normal_dec_region = 'fieldDec between -90.0 and -61.0'
+        self.truth_user_regions = 'fieldId=2 or fieldId=256 or fieldId=2935'
 
     def test_base_select(self):
         self.assertEqual(self.fs.base_select(), self.truth_base_query)
@@ -58,6 +59,19 @@ class TestFieldSelection(unittest.TestCase):
 
     def test_get_all_fields(self):
         self.assertEqual(self.fs.get_all_fields(), self.truth_base_query + ";")
+
+    def test_get_user_regions(self):
+        user_regions = (2, 256, 2935)
+        query = self.fs.select_user_regions(user_regions)
+        combiners = ()
+
+        truth_query_parts = [self.truth_base_query]
+        truth_query_parts.append("where")
+        truth_query_parts.append(self.truth_user_regions)
+        truth_query_parts.append("order by fieldId")
+
+        truth_query = " ".join(truth_query_parts) + ";"
+        self.assertEqual(self.fs.combine_queries(combiners, query), truth_query)
 
 if __name__ == '__main__':
     unittest.main()

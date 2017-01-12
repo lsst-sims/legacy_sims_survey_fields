@@ -148,3 +148,29 @@ class FieldSelection(object):
                                                                               end_value)
 
         return sql
+
+    def select_user_regions(self, id_list):
+        """Create a query for a list of fields.of
+
+        This function creates a query focusing on field Ids. It is recommended
+        not to use this with more than a dozen Ids.
+
+        Parameters
+        ----------
+        id_list : list[int]
+            A set of field Ids to construct a query for.query
+
+        Returns
+        -------
+        str
+            The appropriate query.
+        """
+        sql = []
+        for fid in id_list:
+            sql.append("fieldId={}".format(fid))
+            sql.append("or")
+
+        # Don't need last or
+        del sql[-1]
+
+        return " ".join(sql)
