@@ -26,7 +26,7 @@ A quick example is retriving all fields as a set within a declination from -20 d
   query = fs.select_region("Dec", -20.0, 0)
   # Create the set fields
   fd = FieldsDatabase()
-  field_set = fd.get_field_set(fs.finish_query(query))
+  field_set = fd.get_field_set(fs.combine_queries(query))
 
 The result is a set of tuples containing the field information. 
 
@@ -47,8 +47,8 @@ Galactic Plane Region Description
 
 The galactic plane region is determined by an envelope as shown in the following graphic.
 
-.. image:: /_static_sims_survey_fields/galactic_plane_envelope.png
-    :target: ../../_static_sims_survey_fields/galactic_plane_envelope.png
+.. image:: /_static/sims_survey_fields/galactic_plane_envelope.png
+    :target: ../../_static/sims_survey_fields/galactic_plane_envelope.png
     :alt: Galactic Plane Region Definition
 
 It is specified by three values::

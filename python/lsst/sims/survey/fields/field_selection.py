@@ -31,16 +31,17 @@ class FieldSelection(object):
         """
         return "select * from Field"
 
-    def combine_queries(self, combiners, *queries, **kwargs):
+    def combine_queries(self, *queries, **kwargs):
         """Combine a set of queries.
 
         Parameters
         ----------
-        combiners : tuple of str
-            A set of logical operations (and, or etc.) to join the queries
-            with.
         queries : str instances
             A set of queries to join via the given operators.
+        combiners : tuple of str
+            A set of logical operations (and, or etc.) to join the queries
+            with. Defaults is an empty tuple. NOTE: A tuple with one logical
+            operator must look like ('and',).
         order_by : str, optional
             Set the order by clause. Default is fieldId.
 
@@ -49,6 +50,7 @@ class FieldSelection(object):
         str:
             The fully combined query.
         """
+        combiners = kwargs.get("combiners", ())
         if len(combiners) != len(queries) - 1:
             raise RuntimeError("Number of combiners must be one less than "
                                "number of queries!")
