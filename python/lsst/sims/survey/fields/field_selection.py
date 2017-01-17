@@ -90,7 +90,7 @@ class FieldSelection(object):
         Parameters
         ----------
         maxB : float
-            The maximum galactic latitude at the galacitc longitude of zero.
+            The maximum galactic latitude at the galactic longitude of zero.
         minB : float
             The minimum galactic latitude at the galactic longitude of endL.
         endL : float
