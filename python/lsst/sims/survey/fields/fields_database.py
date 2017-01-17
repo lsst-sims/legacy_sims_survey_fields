@@ -10,13 +10,15 @@ __all__ = ["FieldsDatabase"]
 class FieldsDatabase(object):
 
     FIELDS_DB = "Fields.db"
-    """Internal file containing the standard 3.5 degree FOV survey field information."""
+    """Internal file containing the standard 3.5 degree FOV survey field
+       information."""
 
     def __init__(self):
         """Initialize the class.
         """
         self.db_name = self.FIELDS_DB
-        self.connect = sqlite3.connect(os.path.join(os.path.dirname(__file__), self.db_name))
+        self.connect = sqlite3.connect(os.path.join(os.path.dirname(__file__),
+                                       self.db_name))
 
     def __del__(self):
         """Delete the class.
@@ -46,14 +48,16 @@ class FieldsDatabase(object):
     def get_opsim3_userregions(self, query, precision=2):
         """Get a formatted string of OpSim3 user regions.
 
-        This function gets a formatted string of OpSim3 user regions suitable for an OpSim3
-        configuration file. The format looks like (RA,Dec,Width):
+        This function gets a formatted string of OpSim3 user regions suitable
+        for an OpSim3 configuration file. The format looks like
+        (RA,Dec,Width):
 
         userRegion = XXX.XX,YYY.YY,0.03
         ...
 
-        The last column is unused in OpSim3. The precision argument can be used to control
-        the formatting, but OpSim3 configuration files use 2 digits as standard.
+        The last column is unused in OpSim3. The precision argument can be
+        used to control the formatting, but OpSim3 configuration files use 2
+        digits as standard.
 
         Parameters
         ----------
@@ -67,7 +71,8 @@ class FieldsDatabase(object):
         str
             The OpSim3 user regions formatted string.
         """
-        format_str = "userRegion = {{:.{0}f}},{{:.{0}f}},0.03".format(precision)
+        format_str = "userRegion = "\
+                     "{{:.{0}f}},{{:.{0}f}},0.03".format(precision)
         rows = self.get_rows(query)
         result = []
         for row in rows:
@@ -99,8 +104,9 @@ class FieldsDatabase(object):
     def get_rows(self, query):
         """Get the rows from a query.
 
-        This function hands back all rows from a query. This allows one to perform other
-        operations on the information than those provided by this class.
+        This function hands back all rows from a query. This allows one to
+        perform other operations on the information than those provided by
+        this class.
 
         Parameters
         ----------

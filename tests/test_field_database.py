@@ -34,8 +34,10 @@ userRegion = 180.00,-87.57,0.03"""
     def test_get_field_set(self):
         field_set = self.fields_db.get_field_set(self.query)
         truth_set = set()
-        truth_set.add((1, 3.5, 0.0, -90.0, -57.068082, -27.128251, -89.93121, -66.561358))
-        truth_set.add((2, 3.5, 180.0, -87.568555, -57.663825, -24.756541, -96.024547, -66.442665))
+        truth_set.add((1, 3.5, 0.0, -90.0, -57.068082, -27.128251,
+                       -89.93121, -66.561358))
+        truth_set.add((2, 3.5, 180.0, -87.568555, -57.663825, -24.756541,
+                       -96.024547, -66.442665))
         self.assertEqual(len(field_set), 2)
         self.assertSetEqual(field_set, truth_set)
 

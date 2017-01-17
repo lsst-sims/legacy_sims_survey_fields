@@ -18,8 +18,8 @@ CUT_TYPEMAP = {
 class FieldSelection(object):
     """Class for constructing SQL queries on the survey fields database.
 
-    This class is for creating SQL queries to perform on the survey fields database.
-    It does not actually perform the queries.
+    This class is for creating SQL queries to perform on the survey fields
+    database. It does not actually perform the queries.
     """
 
     def base_select(self):
@@ -37,7 +37,8 @@ class FieldSelection(object):
         Parameters
         ----------
         combiners : tuple of str
-            A set of logical operations (and, or etc.) to join the queries with.
+            A set of logical operations (and, or etc.) to join the queries
+            with.
         queries : str instances
             A set of queries to join via the given operators.
         order_by : str, optional
@@ -49,7 +50,8 @@ class FieldSelection(object):
             The fully combined query.
         """
         if len(combiners) != len(queries) - 1:
-            raise RuntimeError("Number of combiners must be one less than number of queries!")
+            raise RuntimeError("Number of combiners must be one less than "
+                               "number of queries!")
 
         order_by = kwargs.get("order_by", "fieldId")
 
@@ -82,8 +84,8 @@ class FieldSelection(object):
     def galactic_region(self, maxB, minB, endL, exclusion=False):
         """Create a galactic region.
 
-        This function creates a sloping region around the galactic plane to either include or
-        exclude fields.
+        This function creates a sloping region around the galactic plane to
+        either include or exclude fields.
 
         Parameters
         ----------
@@ -103,8 +105,8 @@ class FieldSelection(object):
         """
         region_select = ">" if exclusion else "<="
         band = maxB - minB
-        sql = '(abs(fieldGB) {0} ({1} - ({2} * abs(fieldGL)) / {3}))'.format(region_select,
-                                                                             maxB, band, endL)
+        sql = '(abs(fieldGB) {0} ({1} - ({2} * '\
+              'abs(fieldGL)) / {3}))'.format(region_select, maxB, band, endL)
 
         return sql
 
@@ -121,10 +123,11 @@ class FieldSelection(object):
     def select_region(self, region_type, start_value, end_value):
         """Create a simple bounded region.
 
-        This function creates a bounded cut query based on the input values as bounds
-        for a given region. If start_value < end_value, the cut looks like [start_value,
-        end_value]. If start_value > end_value, the bounded cut is or'd between the following
-        cuts: [start_value, 360] and [0, end_value].
+        This function creates a bounded cut query based on the input values as
+        bounds for a given region. If start_value < end_value, the cut looks
+        like [start_value, end_value]. If start_value > end_value, the bounded
+        cut is or'd between the following cuts: [start_value, 360] and
+        [0, end_value].
 
         Parameters
         ----------
@@ -142,10 +145,12 @@ class FieldSelection(object):
         """
         column_name = CUT_TYPEMAP[region_type]
         if end_value > start_value:
-            sql = '{0} between {1} and {2}'.format(column_name, start_value, end_value)
+            sql = '{0} between {1} and {2}'.format(column_name, start_value,
+                                                   end_value)
         else:
-            sql = '({0} between {1} and 360 or {0} between 0 and {2})'.format(column_name, start_value,
-                                                                              end_value)
+            sql = '({0} between {1} and 360 or '\
+                  '{0} between 0 and {2})'.format(column_name, start_value,
+                                                  end_value)
 
         return sql
 

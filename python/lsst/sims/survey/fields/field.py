@@ -69,8 +69,10 @@ class Field(object):
         str
         """
         return "Id: {}, RA: {}, Dec:{}, GL: {}, "\
-               "GB: {}, EL: {}, EB: {}, FOV: {}".format(self.fid, self.ra, self.dec, self.gl, self.gb,
-                                                        self.el, self.eb, self.fov)
+               "GB: {}, EL: {}, EB: {}, FOV: {}".format(self.fid, self.ra,
+                                                        self.dec, self.gl,
+                                                        self.gb, self.el,
+                                                        self.eb, self.fov)
 
     @property
     def ra_rad(self):
@@ -128,4 +130,5 @@ class Field(object):
         :class:`.Field`
             The instance containing the database row information.
         """
-        return cls(row[0], row[2], row[3], row[4], row[5], row[6], row[7], row[1])
+        return cls(row[0], row[2], row[3], row[4], row[5], row[6], row[7],
+                   row[1])
