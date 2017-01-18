@@ -51,19 +51,19 @@ class TestFieldSelection(unittest.TestCase):
         truth_query_parts.append("order by fieldId")
 
         truth_query = " ".join(truth_query_parts) + ";"
-        self.assertEqual(self.fs.combine_queries(combiners, query1, query2),
+        self.assertEqual(self.fs.combine_queries(query1, query2,
+                                                 combiners=combiners),
                          truth_query)
 
     def test_bad_combine_queries(self):
         query1 = self.fs.select_region("RA", 90.0, 270.0)
         query2 = self.fs.select_region("Dec", -90.0, -61.0)
-        combiners = ()
         with self.assertRaises(RuntimeError):
-            self.fs.combine_queries(combiners, query1, query2)
+            self.fs.combine_queries(query1, query2)
 
         combiners = ("and",)
         with self.assertRaises(RuntimeError):
-            self.fs.combine_queries(combiners, query1)
+            self.fs.combine_queries(query1, combiners=combiners)
 
     def test_get_all_fields(self):
         self.assertEqual(self.fs.get_all_fields(),
@@ -80,7 +80,7 @@ class TestFieldSelection(unittest.TestCase):
         truth_query_parts.append("order by fieldId")
 
         truth_query = " ".join(truth_query_parts) + ";"
-        self.assertEqual(self.fs.combine_queries(combiners, query),
+        self.assertEqual(self.fs.combine_queries(query, combiners=combiners),
                          truth_query)
 
 if __name__ == '__main__':
