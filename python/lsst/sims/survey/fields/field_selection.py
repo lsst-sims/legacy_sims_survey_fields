@@ -118,7 +118,7 @@ class FieldSelection(object):
         Returns
         -------
         str
-            THe query for all the fields.
+            The query for all the fields.
         """
         return self.finish_query(self.base_select())
 

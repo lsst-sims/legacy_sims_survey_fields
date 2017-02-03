@@ -2,9 +2,9 @@
 
 .. _lsst-sims-survey-fields:
 
-########################################################
-sims_survey_fields - Simulation Survey Field Information
-########################################################
+#############################################################
+lsst.sims.survey.fields - Simulation Survey Field Information
+#############################################################
 
 .. _lsst-sims-survey-fields-intro:
 
@@ -22,11 +22,11 @@ A quick example is retriving all fields as a set within a declination from -20 d
 
 .. code-block:: python
 
-  from lsst.sims.survey.fields import FieldsDatabase, FieldsSelection
+  from lsst.sims.survey.fields import FieldsDatabase, FieldSelection
   # Create the selection
   fs = FieldSelection()
   query = fs.select_region("Dec", -20.0, 0)
-  # Create the set fields
+  # Create the field set
   fd = FieldsDatabase()
   field_set = fd.get_field_set(fs.combine_queries(query))
 
@@ -34,36 +34,14 @@ The result is a set of tuples containing the field information.
 
 .. _lsst-sims-survey-fields-using:
 
-Using sims_survey_fields
-========================
+Using lsst.sims.survey.fields
+=============================
 
-A series of sections that cover API usage.
+.. toctree::
+   :maxdepth: 2
 
-Subsections
------------
-
-Use sectioning liberally.
-
-Galactic Plane Region Description
-=================================
-
-The galactic plane region is determined by an envelope as shown in the following graphic.
-
-.. image:: /_static/sims_survey_fields/galactic_plane_envelope.png
-    :alt: Galactic Plane Region Definition
-
-It is specified by three values::
-
-  maxB
-      This is the value of the maximum extent of the envelope in terms of galactic latitude (degrees) at the galactic longitude of zero degrees.
-
-  minB
-      This is the value of the minimum extent of the envelope in terms of galatic latitdue (degrees) at the galatic longitude specified by endL
-
-  endL
-      This is the end of the galactic plane envelope in terms of galactic longitude (degrees).
-
-
+   selections
+   database
 
 .. _lsst-sims-survey-fields-py-ref:
 
