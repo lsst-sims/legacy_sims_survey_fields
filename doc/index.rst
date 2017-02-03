@@ -1,3 +1,5 @@
+.. currentmodule:: lsst.sims.survery.fields
+
 .. _lsst-sims-survey-fields:
 
 ########################################################
@@ -30,7 +32,7 @@ A quick example is retriving all fields as a set within a declination from -20 d
 
 The result is a set of tuples containing the field information. 
 
-.. _lsst-sims-survey-fields-getting-started:
+.. _lsst-sims-survey-fields-using:
 
 Using sims_survey_fields
 ========================
@@ -48,19 +50,18 @@ Galactic Plane Region Description
 The galactic plane region is determined by an envelope as shown in the following graphic.
 
 .. image:: /_static/sims_survey_fields/galactic_plane_envelope.png
-    :target: ../../_static/sims_survey_fields/galactic_plane_envelope.png
     :alt: Galactic Plane Region Definition
 
 It is specified by three values::
 
-maxB
-    This is the value of the maximum extent of the envelope in terms of galactic latitude (degrees) at the galactic longitude of zero degrees.
+  maxB
+      This is the value of the maximum extent of the envelope in terms of galactic latitude (degrees) at the galactic longitude of zero degrees.
 
-minB
-    This is the value of the minimum extent of the envelope in terms of galatic latitdue (degrees) at the galatic longitude specified by endL
+  minB
+      This is the value of the minimum extent of the envelope in terms of galatic latitdue (degrees) at the galatic longitude specified by endL
 
-endL
-    This is the end of the galactic plane envelope in terms of galactic longitude (degrees).
+  endL
+      This is the end of the galactic plane envelope in terms of galactic longitude (degrees).
 
 
 
@@ -69,4 +70,5 @@ endL
 Python Reference
 ================
 
-API reference for Python developers.
+.. automodapi:: lsst.sims.survey.fields
+
