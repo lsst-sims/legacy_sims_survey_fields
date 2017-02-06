@@ -21,13 +21,6 @@ class Field(object):
         The ecliptic latitude (degrees) of the field.
     fov : float
         The field-of-view (degrees) of the field.
-    ra_rad
-    dec_rad
-    gl_rad
-    gb_rad
-    el_rad
-    eb_rad
-    fov_rad
     """
 
     def __init__(self, fid, ra, dec, gl, gb, el, eb, fov):
