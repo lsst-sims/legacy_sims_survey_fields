@@ -25,6 +25,13 @@ userRegion = 180.00,-87.57,0.03"""
         self.assertEqual(ra[1], 180.0)
         self.assertAlmostEqual(dec[1], -87.57, delta=1e-2)
 
+    def test_get_id_ra_dec_arrays(self):
+        fieldid, ra, dec = self.fields_db.get_id_ra_dec_arrays(self.query)
+        self.assertEqual(ra[1], 180.0)
+        self.assertEqual(fieldid[1], 2)
+        self.assertNotEqual(fieldid[0], 0)
+        self.assertAlmostEqual(dec[1], -87.57, delta=1e-2)
+
     def test_get_rows(self):
         rows = self.fields_db.get_rows(self.query)
         self.assertIsInstance(rows, list)

@@ -101,6 +101,30 @@ class FieldsDatabase(object):
 
         return numpy.array(ra), numpy.array(dec)
 
+    def get_id_ra_dec_arrays(self, query):
+        """Retrieve lists of fieldId, RA and Dec.
+
+        Parameters
+        ----------
+        query : str
+            The query for field retrieval.
+
+        Returns
+        -------
+        numpy.array, numpy.array, numpy.array
+            The arrays of fieldId, RA and Dec.
+        """
+        rows = self.get_rows(query)
+        fieldId = []
+        ra = []
+        dec = []
+        for row in rows:
+            fieldId.append(int(row[0]))
+            ra.append(row[2])
+            dec.append(row[3])
+
+        return numpy.array(fieldId, dtype=int), numpy.array(ra), numpy.array(dec)
+
     def get_rows(self, query):
         """Get the rows from a query.
 
