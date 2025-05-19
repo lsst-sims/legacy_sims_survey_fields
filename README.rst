@@ -1,3 +1,5 @@
+Moved to [rubin_scheduler](github.com/lsst/rubin_scheduler)
+
 ==================
 sims_survey_fields
 ==================
